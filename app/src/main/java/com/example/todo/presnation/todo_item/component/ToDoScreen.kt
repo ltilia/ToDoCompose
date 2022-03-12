@@ -34,14 +34,11 @@ fun TodoScreen() {
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        Box(
-            Modifier
-                .weight(1f)
-                .background(DARK_GREEN)) {
+        Box(Modifier.weight(1f)) {
             ModalBottomSheet(type = bottomSheetType,  bottomSheetState = bottomSheetState) {
                 Column {
                     Header()
-                    ToDoContent()
+                    ToDoContent(Modifier.weight(1f))
                 }
             }
         }

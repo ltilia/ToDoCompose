@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.sp
 import com.example.todo.presnation.ui.theme.DARK_GREEN
 
 @Composable
-fun ToDoContent() {
+fun ToDoContent(modifier: Modifier) {
     var title by remember {
         mutableStateOf("")
     }
@@ -26,7 +26,6 @@ fun ToDoContent() {
 
     Column(
         modifier = Modifier
-            .wrapContentHeight()
             .background(DARK_GREEN)
     ) {
         OutlinedTextField(
@@ -49,7 +48,7 @@ fun ToDoContent() {
             textStyle = TextStyle(fontSize = 20.sp, color = Color.White)
         )
         OutlinedTextField(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth(),
             placeholder = {
                 Text(text = "Note", color = Color.White, fontSize = 19.sp)
