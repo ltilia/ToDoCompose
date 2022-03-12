@@ -3,6 +3,7 @@ package com.example.todo.presnation.todo_item.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
@@ -11,10 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
-import com.example.todo.ui.theme.DARK_GREEN
+import com.example.todo.presnation.ui.theme.DARK_GREEN
 
 @Composable
-fun ToDoContent(modifier: Modifier) {
+fun ToDoContent() {
     var title by remember {
         mutableStateOf("")
     }
@@ -24,7 +25,8 @@ fun ToDoContent(modifier: Modifier) {
     }
 
     Column(
-        modifier = modifier
+        modifier = Modifier
+            .wrapContentHeight()
             .background(DARK_GREEN)
     ) {
         OutlinedTextField(

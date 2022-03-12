@@ -17,16 +17,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.todo.ui.theme.DARK_GREEN
+import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetType
+import com.example.todo.presnation.ui.theme.DARK_GREEN
 
 @Composable
-fun Footer(showMoreContent: () -> Unit) {
+fun Footer(showMoreContent: (BottomSheetType) -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth().background(DARK_GREEN),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = {
+            showMoreContent(BottomSheetType.Setting)
+        }) {
             Icon(
                 modifier = Modifier.size(24.dp),
                 imageVector = Icons.Default.MoreVert,
@@ -38,7 +41,7 @@ fun Footer(showMoreContent: () -> Unit) {
         Text(text = "Last update 6:00 PM", color = Color.White, fontSize = 14.sp)
 
         IconButton(onClick = {
-            showMoreContent()
+            showMoreContent(BottomSheetType.MoreContent)
         }) {
             Box(
                 modifier = Modifier

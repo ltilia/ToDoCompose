@@ -15,7 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.todo.R
-import com.example.todo.ui.theme.DARK_GREEN
+import com.example.todo.presnation.ui.theme.DARK_GREEN
 
 @Composable
 fun Header() {
@@ -23,8 +23,8 @@ fun Header() {
         modifier = Modifier
             .fillMaxWidth()
             .background(DARK_GREEN)
-            .padding(horizontal = 5.dp)
-            .padding(top = 25.dp, bottom = 10.dp),
+            .padding(horizontal = 7.dp)
+            .padding(top = 15.dp, bottom = 10.dp),
         contentAlignment = Alignment.Center
     ) {
         Box(modifier = Modifier.align(Alignment.CenterStart)) {

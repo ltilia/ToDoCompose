@@ -5,4 +5,9 @@
     <string name="drawing">Drawing</string>
     <string name="recording">Recording</string>
     <string name="check_box">Checkbox</string>
+    <string name="delete">Delete</string>
+    <string name="make_copy">Make a copy</string>
+    <string name="send">Send</string>
+    <string name="collaborator">Collaborator</string>
+    <string name="label">Labels</string>
 </resources>

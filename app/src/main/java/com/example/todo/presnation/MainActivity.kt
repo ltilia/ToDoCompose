@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.presnation
 
 import android.os.Bundle
 import android.view.WindowManager
@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.example.todo.presnation.todo_item.component.Footer
 import com.example.todo.presnation.todo_item.component.TodoScreen
-import com.example.todo.ui.theme.ToDoTheme
+import com.example.todo.presnation.ui.theme.ToDoTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
