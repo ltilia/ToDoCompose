@@ -44,7 +44,7 @@ fun ColorItem(color: Color, selectedColor: MutableState<Color>, onColorSelected:
             Icon(
                 imageVector = Icons.Default.Check,
                 contentDescription = "select color",
-                tint = Color.White
+                tint = Color.White.copy(alpha = .5f)
             )
         }
     }
