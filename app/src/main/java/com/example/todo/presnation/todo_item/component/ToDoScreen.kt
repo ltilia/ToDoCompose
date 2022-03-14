@@ -1,7 +1,7 @@
 package com.example.todo.presnation.todo_item.component
 
-import androidx.compose.animation.core.LinearOutSlowInEasing
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -33,9 +33,27 @@ fun TodoScreen() {
         mutableStateOf(BottomSheetType.MoreContent)
     }
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    val backgroundColor = remember {
+        mutableStateOf(DARK_GREEN)
+    }
+    val animatedColor = animateColorAsState(
+        targetValue = backgroundColor.value,
+        animationSpec = TweenSpec<Color>(
+        3000, 300, LinearOutSlowInEasing
+    ))
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(animatedColor.value)) {
         Box(Modifier.weight(1f)) {
-            ModalBottomSheet(type = bottomSheetType,  bottomSheetState = bottomSheetState) {
+            ModalBottomSheet(
+                type = bottomSheetType,
+                backgroundColor = animatedColor.value,
+                bottomSheetState = bottomSheetState,
+                selectedColor = backgroundColor, onColorSelected = { color ->
+                    backgroundColor.value = color
+                }) {
                 Column {
                     Header()
                     ToDoContent(Modifier.weight(1f))
@@ -43,7 +61,7 @@ fun TodoScreen() {
             }
         }
 
-        Footer(showMoreContent = { type ->
+        Footer(color = animatedColor.value, showMoreContent = { type ->
             bottomSheetType.value = type
             coroutineScope.launch {
                 bottomSheetState.animateTo(
@@ -51,7 +69,7 @@ fun TodoScreen() {
                     anim = tween(
                         delayMillis = 300,
                         durationMillis = 300,
-                        easing = LinearOutSlowInEasing
+                        easing = FastOutSlowInEasing
                     )
                 )
             }

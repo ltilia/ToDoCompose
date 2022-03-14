@@ -7,6 +7,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.example.todo.R
 import com.example.todo.presnation.todo_item.component.BottomSheenItem
 import com.example.todo.presnation.ui.theme.DARK_GREEN
@@ -15,21 +16,27 @@ import com.example.todo.presnation.ui.theme.DARK_GREEN
 @Composable
 fun ModalBottomSheet(
     type: MutableState<BottomSheetType>,
-    bottomSheetState: ModalBottomSheetState, content: @Composable () -> Unit ) {
+    backgroundColor: Color,
+    selectedColor: MutableState<Color>,
+    onColorSelected: (Color) -> Unit,
+    bottomSheetState: ModalBottomSheetState, content: @Composable () -> Unit
+) {
     ModalBottomSheetLayout(
         sheetState = bottomSheetState,
         sheetContent = {
             Column(
                 Modifier
                     .fillMaxWidth()
-                    .background(DARK_GREEN)) {
+                    .background(backgroundColor)) {
                 when (type.value) {
                     BottomSheetType.MoreContent -> {
                         MoreContentBottomSheet()
                     }
 
                     BottomSheetType.Setting -> {
-                        SettingBottomSheet()
+                        SettingBottomSheet(selectedColor, onColorSelected = { color ->
+                            onColorSelected(color)
+                        })
                     }
                 }
             }

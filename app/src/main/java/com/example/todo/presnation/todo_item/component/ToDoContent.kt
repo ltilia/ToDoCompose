@@ -26,7 +26,7 @@ fun ToDoContent(modifier: Modifier) {
 
     Column(
         modifier = Modifier
-            .background(DARK_GREEN)
+            .background(Color.Transparent)
     ) {
         OutlinedTextField(
             modifier = Modifier

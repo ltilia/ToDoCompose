@@ -21,9 +21,11 @@ import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetT
 import com.example.todo.presnation.ui.theme.DARK_GREEN
 
 @Composable
-fun Footer(showMoreContent: (BottomSheetType) -> Unit) {
+fun Footer(
+    color: Color,
+    showMoreContent: (BottomSheetType) -> Unit) {
     Row(
-        modifier = Modifier.fillMaxWidth().background(DARK_GREEN),
+        modifier = Modifier.fillMaxWidth().background(color),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
