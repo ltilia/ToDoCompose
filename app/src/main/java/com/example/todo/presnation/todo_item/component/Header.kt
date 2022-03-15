@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.todo.R
+import com.example.todo.presnation.todo_item.util.mirro
 
 @Composable
 fun Header() {
@@ -18,13 +19,13 @@ fun Header() {
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.Transparent)
-            .padding(horizontal = 7.dp)
-            .padding(top = 25.dp, bottom = 10.dp),
+            .padding(horizontal = 10.dp)
+            .padding(top = 28.dp, bottom = 10.dp),
         contentAlignment = Alignment.Center
     ) {
         Box(modifier = Modifier.align(Alignment.CenterStart)) {
             Icon(
-                modifier = Modifier.size(22.dp),
+                modifier = Modifier.size(22.dp).mirro(),
                 painter = painterResource(id = R.drawable.arrow_back),
                 contentDescription = "Back",
                 tint = Color.White
