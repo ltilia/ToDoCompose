@@ -7,14 +7,12 @@ import com.example.todo.R
 import com.example.todo.presnation.todo_item.component.BottomSheenItem
 
 @Composable
-fun SettingBottomSheet(selectedColor: MutableState<Color>, onColorSelected: (Color) -> Unit) {
+fun SettingBottomSheet(selectedColor: MutableState<Color>) {
     BottomSheenItem(iconResId = R.drawable.delete, titleResId = R.string.delete)
     BottomSheenItem(iconResId = R.drawable.copy, titleResId = R.string.make_copy)
     BottomSheenItem(iconResId = R.drawable.share, titleResId = R.string.send)
     BottomSheenItem(iconResId = R.drawable.add_user, titleResId = R.string.collaborator)
     BottomSheenItem(iconResId = R.drawable.tag, titleResId = R.string.label)
 
-    ColorsList(selectedColor, onColorSelected = { color ->
-        onColorSelected(color)
-    })
+    ColorsList(selectedColor)
 }

@@ -39,7 +39,7 @@ fun TodoScreen() {
     val animatedColor = animateColorAsState(
         targetValue = backgroundColor.value,
         animationSpec = TweenSpec<Color>(
-        3000, 300, LinearOutSlowInEasing
+        2500, 300, LinearOutSlowInEasing
     ))
 
     Column(
@@ -51,9 +51,8 @@ fun TodoScreen() {
                 type = bottomSheetType,
                 backgroundColor = animatedColor.value,
                 bottomSheetState = bottomSheetState,
-                selectedColor = backgroundColor, onColorSelected = { color ->
-                    backgroundColor.value = color
-                }) {
+                selectedColor = backgroundColor
+            ) {
                 Column {
                     Header()
                     ToDoContent(Modifier.weight(1f))

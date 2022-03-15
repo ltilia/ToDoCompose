@@ -11,12 +11,10 @@ import com.example.todo.presnation.todo_item.component.bottom_sheet.ColorItem
 import com.example.todo.presnation.todo_item.util.ColorsUtil
 
 @Composable
-fun ColorsList(selectedColor: MutableState<Color>, onColorSelected: (Color) -> Unit) {
+fun ColorsList(selectedColor: MutableState<Color>) {
     LazyRow(modifier = Modifier.fillMaxWidth()) {
         items(ColorsUtil.todoItemColors) { color ->
-            ColorItem(color, selectedColor, onColorSelected = { color ->
-                onColorSelected(color)
-            })
+            ColorItem(color, selectedColor)
         }
     }
 }

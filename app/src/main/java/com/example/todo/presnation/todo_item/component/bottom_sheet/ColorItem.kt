@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.example.todo.presnation.ui.theme.DARK_GREEN
 
 @Composable
-fun ColorItem(color: Color, selectedColor: MutableState<Color>, onColorSelected: (Color) -> Unit) {
+fun ColorItem(color: Color, selectedColor: MutableState<Color>) {
     Box(modifier = Modifier
         .padding(10.dp)
         .size(40.dp)
@@ -36,7 +36,6 @@ fun ColorItem(color: Color, selectedColor: MutableState<Color>, onColorSelected:
                 .compositeOver(Color.White), shape = CircleShape
         ).clickable {
             selectedColor.value = color
-            onColorSelected(color)
         },
         contentAlignment = Alignment.Center
     ) {

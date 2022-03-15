@@ -18,7 +18,6 @@ fun ModalBottomSheet(
     type: MutableState<BottomSheetType>,
     backgroundColor: Color,
     selectedColor: MutableState<Color>,
-    onColorSelected: (Color) -> Unit,
     bottomSheetState: ModalBottomSheetState, content: @Composable () -> Unit
 ) {
     ModalBottomSheetLayout(
@@ -34,9 +33,7 @@ fun ModalBottomSheet(
                     }
 
                     BottomSheetType.Setting -> {
-                        SettingBottomSheet(selectedColor, onColorSelected = { color ->
-                            onColorSelected(color)
-                        })
+                        SettingBottomSheet(selectedColor)
                     }
                 }
             }
