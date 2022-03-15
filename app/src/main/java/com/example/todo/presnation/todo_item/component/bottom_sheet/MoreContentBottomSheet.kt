@@ -2,7 +2,6 @@ package com.example.todo.presnation.todo_item.component.bottom_sheet
 
 import androidx.compose.runtime.Composable
 import com.example.todo.R
-import com.example.todo.presnation.todo_item.component.BottomSheenItem
 
 @Composable
 fun MoreContentBottomSheet() {

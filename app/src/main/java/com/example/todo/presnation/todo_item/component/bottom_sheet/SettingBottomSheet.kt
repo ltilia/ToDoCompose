@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.graphics.Color
 import com.example.todo.R
-import com.example.todo.presnation.todo_item.component.BottomSheenItem
 
 @Composable
 fun SettingBottomSheet(selectedColor: MutableState<Color>) {
