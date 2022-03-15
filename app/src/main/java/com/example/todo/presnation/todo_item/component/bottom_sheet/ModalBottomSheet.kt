@@ -8,9 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.todo.R
-import com.example.todo.presnation.todo_item.component.BottomSheenItem
-import com.example.todo.presnation.ui.theme.DARK_GREEN
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

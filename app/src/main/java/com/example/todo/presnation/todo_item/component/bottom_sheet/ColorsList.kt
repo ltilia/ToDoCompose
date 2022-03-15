@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.todo.presnation.todo_item.component.bottom_sheet.ColorItem
 import com.example.todo.presnation.todo_item.util.ColorsUtil
 
 @Composable

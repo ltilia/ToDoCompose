@@ -1,4 +1,4 @@
-package com.example.todo.presnation.todo_item.component
+package com.example.todo.presnation.todo_item.component.bottom_sheet
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
