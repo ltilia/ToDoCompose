@@ -14,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetType
@@ -56,6 +57,7 @@ fun TodoScreen() {
         2500, 300, LinearOutSlowInEasing
     ))
 
+    val focusManager = LocalFocusManager.current
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -80,6 +82,7 @@ fun TodoScreen() {
         }
 
         Footer(color = animatedColor.value, showBottomSheet = { type ->
+            focusManager.clearFocus(true)
             bottomSheetType.value = type
             coroutineScope.launch {
                 bottomSheetVisibility.value = true
