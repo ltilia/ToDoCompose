@@ -20,22 +20,19 @@ import com.example.todo.presnation.ui.theme.ToDoTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ToDoTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Scaffold(
-                        bottomBar = {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
-                        }
+        setContent {
+                ToDoTheme {
+                    // A surface container using the 'background' color from the theme
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colors.background
                     ) {
                         TodoScreen()
                     }
                 }
-            }
+
         }
     }
 }

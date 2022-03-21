@@ -20,14 +20,17 @@ import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetT
 @Composable
 fun Footer(
     color: Color,
-    showMoreContent: (BottomSheetType) -> Unit) {
+    showBottomSheet: (BottomSheetType) -> Unit) {
     Row(
-        modifier = Modifier.fillMaxWidth().background(color),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color)
+            .navigationBarsPadding(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         IconButton(onClick = {
-            showMoreContent(BottomSheetType.Setting)
+            showBottomSheet(BottomSheetType.Setting)
         }) {
             Icon(
                 modifier = Modifier.size(24.dp),
@@ -40,7 +43,7 @@ fun Footer(
         Text(text = "Last update 6:00 PM", color = Color.White, fontSize = 14.sp)
 
         IconButton(onClick = {
-            showMoreContent(BottomSheetType.MoreContent)
+            showBottomSheet(BottomSheetType.MoreContent)
         }) {
             Box(
                 modifier = Modifier
