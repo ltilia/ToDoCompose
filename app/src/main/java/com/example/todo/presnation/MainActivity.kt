@@ -1,22 +1,20 @@
 package com.example.todo.presnation
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import com.example.todo.presnation.todo_item.component.Footer
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.todo.presnation.todo_item.component.TodoScreen
 import com.example.todo.presnation.todo_list.component.ToDoListScreen
 import com.example.todo.presnation.ui.theme.ToDoTheme
+import com.example.todo.presnation.util.Screen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,16 +22,29 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-                ToDoTheme {
-                    // A surface container using the 'background' color from the theme
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colors.background
+            ToDoTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.TodoListScreen.route
                     ) {
-                        ToDoListScreen()
-                     //   TodoScreen()
+                        composable(route = Screen.TodoListScreen.route) {
+                            ToDoListScreen( onItemClicked = {
+                                navController.navigate(Screen.TodoItem.route)
+                            })
+                        }
+
+                        composable(route = Screen.TodoItem.route) {
+                            TodoScreen()
+                        }
                     }
                 }
+            }
         }
     }
 }

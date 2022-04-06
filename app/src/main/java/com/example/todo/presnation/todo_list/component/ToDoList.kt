@@ -8,12 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun ToDoList() {
+fun ToDoList(onItemClicked: () -> Unit) {
     LazyVerticalGrid(
         modifier = Modifier.fillMaxWidth(),
         columns = GridCells.Fixed(2)) {
         items(20) {
-            ToDoItem()
+            ToDoItem(onItemClicked)
         }
     }
 }
