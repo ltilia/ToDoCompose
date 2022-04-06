@@ -19,4 +19,8 @@ val DARK_YELLOW_100 = Color(0xFF5f4a1c)
 val DARK_RED = Color(0xFF5a2a2a)
 val BLACK = Color(0xFF2d2e30)
 
+val DARK_GRAY_100 = Color(0xFF2a2b30)
+
+val DARK_ORANGE = Color(0xFFdb7d30)
+
 

@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.example.todo.presnation.todo_item.component.Footer
 import com.example.todo.presnation.todo_item.component.TodoScreen
+import com.example.todo.presnation.todo_list.component.ToDoListScreen
 import com.example.todo.presnation.ui.theme.ToDoTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,10 +30,10 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colors.background
                     ) {
-                        TodoScreen()
+                        ToDoListScreen()
+                     //   TodoScreen()
                     }
                 }
-
         }
     }
 }
