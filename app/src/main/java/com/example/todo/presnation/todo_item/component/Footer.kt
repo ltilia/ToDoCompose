@@ -8,25 +8,30 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.todo.ui.theme.DARK_GREEN
+import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetType
 
 @Composable
-fun Footer(showMoreContent: () -> Unit) {
+fun Footer(
+    color: Color,
+    showBottomSheet: (BottomSheetType) -> Unit) {
     Row(
-        modifier = Modifier.fillMaxWidth().background(DARK_GREEN),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color)
+            .navigationBarsPadding(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = {
+            showBottomSheet(BottomSheetType.Setting)
+        }) {
             Icon(
                 modifier = Modifier.size(24.dp),
                 imageVector = Icons.Default.MoreVert,
@@ -38,7 +43,7 @@ fun Footer(showMoreContent: () -> Unit) {
         Text(text = "Last update 6:00 PM", color = Color.White, fontSize = 14.sp)
 
         IconButton(onClick = {
-            showMoreContent()
+            showBottomSheet(BottomSheetType.MoreContent)
         }) {
             Box(
                 modifier = Modifier

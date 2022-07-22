@@ -1,5 +1,6 @@
 package com.example.todo.presnation.todo_item.component
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,21 +12,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
-import com.example.todo.ui.theme.DARK_GREEN
+import com.example.todo.presnation.todo_item.TodoItemState
 
 @Composable
-fun ToDoContent(modifier: Modifier) {
-    var title by remember {
-        mutableStateOf("")
-    }
-
-    var content by remember {
-        mutableStateOf("")
-    }
-
+fun ToDoContent(
+    modifier: Modifier,
+    state: State<TodoItemState>,
+    onTitleChanged: (String) -> Unit,
+    onContentChanged: (String) -> Unit
+) {
     Column(
-        modifier = modifier
-            .background(DARK_GREEN)
+        modifier = Modifier
+            .background(Color.Transparent)
     ) {
         OutlinedTextField(
             modifier = Modifier
@@ -33,9 +31,9 @@ fun ToDoContent(modifier: Modifier) {
             placeholder = {
                 Text(text = "The Title", color = Color.White, fontSize = 20.sp)
             },
-            value = title,
+            value = state.value.title ?: "",
             onValueChange = { value ->
-              title = value
+                onTitleChanged(value)
             },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedLabelColor = Color.Transparent,
@@ -47,14 +45,14 @@ fun ToDoContent(modifier: Modifier) {
             textStyle = TextStyle(fontSize = 20.sp, color = Color.White)
         )
         OutlinedTextField(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth(),
             placeholder = {
                 Text(text = "Note", color = Color.White, fontSize = 19.sp)
             },
-            value = content,
+            value = state.value.content ?: "",
             onValueChange = { value ->
-                content = value
+                onContentChanged(value)
             },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedLabelColor = Color.Transparent,
