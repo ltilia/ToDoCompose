@@ -1,5 +1,6 @@
 package com.example.todo.presnation.todo_item.component
 
+import android.util.Log
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
@@ -11,21 +12,27 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.example.todo.presnation.todo_item.TodoItemViewModel
 import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetType
 import com.example.todo.presnation.todo_item.component.bottom_sheet.ModalBottomSheet
 import com.example.todo.presnation.ui.theme.DARK_GREEN
 import kotlinx.coroutines.launch
+import com.example.todo.presnation.todo_item.TodoItemViewModel.TodoScreenEvent.*
 
 @OptIn(ExperimentalMaterialApi::class)
 @Preview
 @Composable
-fun TodoScreen() {
+fun TodoScreen(
+    navHostController: NavHostController,
+    viewModel: TodoItemViewModel = hiltViewModel()
+) {
+    val state = viewModel.state
     val coroutineScope = rememberCoroutineScope()
 
     val bottomSheetVisibility = remember {
@@ -33,7 +40,7 @@ fun TodoScreen() {
     }
     val bottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden, confirmStateChange = { value ->
-            when(value) {
+            when (value) {
                 ModalBottomSheetValue.Hidden -> {
                     bottomSheetVisibility.value = false
                 }
@@ -45,7 +52,7 @@ fun TodoScreen() {
             true
         }
     )
-    val bottomSheetType  = remember {
+    val bottomSheetType = remember {
         mutableStateOf(BottomSheetType.MoreContent)
     }
     val backgroundColor = remember {
@@ -54,18 +61,21 @@ fun TodoScreen() {
     val animatedColor = animateColorAsState(
         targetValue = backgroundColor.value,
         animationSpec = TweenSpec<Color>(
-        2500, 300, LinearOutSlowInEasing
-    ))
+            2500, 300, LinearOutSlowInEasing
+        )
+    )
 
     val focusManager = LocalFocusManager.current
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(animatedColor.value)
-            .imePadding()) {
+            .imePadding()
+    ) {
         Box(
             Modifier
-                .weight(1f)) {
+                .weight(1f)
+        ) {
             ModalBottomSheet(
                 type = bottomSheetType,
                 backgroundColor = animatedColor.value,
@@ -75,8 +85,16 @@ fun TodoScreen() {
 
             ) {
                 Column {
-                    Header()
-                    ToDoContent(Modifier.weight(1f))
+                    Header(onBackButtonPressed = {
+                        viewModel.onEvent(OnBackButtonPressed)
+                        navHostController.popBackStack()
+                    })
+                    ToDoContent(Modifier.weight(1f), state, onTitleChanged = { title ->
+                        viewModel.onEvent(OnTitleChange(title))
+                    }, onContentChanged = { content ->
+                        viewModel.onEvent(OnContentChange(content))
+                    }
+                    )
                 }
             }
         }

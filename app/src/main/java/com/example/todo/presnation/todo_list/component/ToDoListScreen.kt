@@ -10,18 +10,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.todo.presnation.todo_list.TodoListViewModel
 import com.example.todo.presnation.ui.theme.DARK_GRAY_100
 
 @Composable
-fun ToDoListScreen(onItemClicked: () -> Unit) {
-    Box(modifier = Modifier.fillMaxSize().background(DARK_GRAY_100)) {
+fun ToDoListScreen(
+    viewModel: TodoListViewModel = hiltViewModel() ,
+    onItemClicked: (id: String) -> Unit,
+    onAddNewToDo: () -> Unit
+) {
+    val state = viewModel.state.value
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(DARK_GRAY_100)) {
         Column(
             modifier = Modifier
                 .background(DARK_GRAY_100)
                 .padding(vertical = 40.dp, horizontal = 5.dp)) {
             Header()
-            ToDoList(onItemClicked)
+            ToDoList(state.todoList, onItemClicked)
         }
-        Footer(Modifier.align(Alignment.BottomCenter))
+
+        AddFloatingActionButton(Modifier.align(Alignment.BottomEnd), onAddNewToDo)
     }
 }
