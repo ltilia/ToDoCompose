@@ -1,8 +1,10 @@
 package com.example.todo.presnation.todo_item.component
 
-import android.util.Log
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.TweenSpec
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,27 +13,28 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.example.todo.presnation.todo_item.TodoItemViewModel
+import com.example.todo.presnation.todo_item.TodoItemViewModel.TodoScreenEvent.OnBackButtonPressed
+import com.example.todo.presnation.todo_item.TodoItemViewModel.TodoScreenEvent.OnContentChange
+import com.example.todo.presnation.todo_item.TodoItemViewModel.TodoScreenEvent.OnTitleChange
 import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetType
 import com.example.todo.presnation.todo_item.component.bottom_sheet.ModalBottomSheet
+import com.example.todo.presnation.todo_item.util.ColorsUtil
 import com.example.todo.presnation.ui.theme.DARK_GREEN
 import kotlinx.coroutines.launch
-import com.example.todo.presnation.todo_item.TodoItemViewModel.TodoScreenEvent.*
 
 @OptIn(ExperimentalMaterialApi::class)
-@Preview
 @Composable
-fun TodoScreen(
-    navHostController: NavHostController,
-    viewModel: TodoItemViewModel = hiltViewModel()
-) {
+fun TodoScreen(viewModel: TodoItemViewModel = hiltViewModel()) {
     val state = viewModel.state
     val coroutineScope = rememberCoroutineScope()
 
@@ -56,8 +59,9 @@ fun TodoScreen(
         mutableStateOf(BottomSheetType.MoreContent)
     }
     val backgroundColor = remember {
-        mutableStateOf(DARK_GREEN)
+        mutableStateOf(ColorsUtil.getColor(state.value.color))
     }
+
     val animatedColor = animateColorAsState(
         targetValue = backgroundColor.value,
         animationSpec = TweenSpec<Color>(
@@ -81,19 +85,21 @@ fun TodoScreen(
                 backgroundColor = animatedColor.value,
                 bottomSheetState = bottomSheetState,
                 selectedColor = backgroundColor,
-                bottomSheetVisibility = bottomSheetVisibility
-
+                bottomSheetVisibility = bottomSheetVisibility,
+                onColorChanged = { colorIndex ->
+                    viewModel.onEvent(TodoItemViewModel.TodoScreenEvent.OnColorChange(colorIndex))
+                }
             ) {
                 Column {
                     Header(onBackButtonPressed = {
                         viewModel.onEvent(OnBackButtonPressed)
-                        navHostController.popBackStack()
                     })
-                    ToDoContent(Modifier.weight(1f), state, onTitleChanged = { title ->
-                        viewModel.onEvent(OnTitleChange(title))
-                    }, onContentChanged = { content ->
-                        viewModel.onEvent(OnContentChange(content))
-                    }
+                    ToDoContent(
+                        Modifier.weight(1f), state, onTitleChanged = { title ->
+                            viewModel.onEvent(OnTitleChange(title))
+                        }, onContentChanged = { content ->
+                            viewModel.onEvent(OnContentChange(content))
+                        }
                     )
                 }
             }

@@ -20,10 +20,11 @@ fun BottomSheenItem(iconResId: Int, titleResId: Int) {
     Row(
         modifier = Modifier.padding(15.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(20.dp)) {
+        horizontalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
         Icon(
             modifier = Modifier.size(20.dp),
-            painter =  painterResource(id = iconResId),
+            painter = painterResource(id = iconResId),
             contentDescription = stringResource(id = titleResId),
             tint = Color.White
         )

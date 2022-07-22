@@ -8,7 +8,7 @@ class InsertTodoUseCase @Inject constructor(private val repository: TodoReposito
 
     suspend operator fun invoke(todo: Todo) {
         if (todo.title.isBlank() && todo.content.isBlank()) {
-            // TODO
+            return
         }
 
         repository.insertTodo(todo)

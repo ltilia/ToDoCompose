@@ -22,18 +22,21 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ColorItem(color: Color, selectedColor: MutableState<Color>) {
-    Box(modifier = Modifier
-        .padding(10.dp)
-        .size(40.dp)
-        .clip(CircleShape)
-        .background(color)
-        .border(
-            width = 1.dp, color = color
-                .copy(alpha = .8f)
-                .compositeOver(Color.White), shape = CircleShape
-        ).clickable {
-            selectedColor.value = color
-        },
+    Box(
+        modifier = Modifier
+            .padding(10.dp)
+            .size(40.dp)
+            .clip(CircleShape)
+            .background(color)
+            .border(
+                width = 1.dp,
+                color = color
+                    .copy(alpha = .8f)
+                    .compositeOver(Color.White),
+                shape = CircleShape
+            ).clickable {
+                selectedColor.value = color
+            },
         contentAlignment = Alignment.Center
     ) {
         AnimatedVisibility(visible = selectedColor.value == color) {

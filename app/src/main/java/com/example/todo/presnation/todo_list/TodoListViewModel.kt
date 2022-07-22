@@ -5,6 +5,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.todo.common.NavigationDestination
+import com.example.todo.common.navigation.NavigationManager
 import com.example.todo.domain.use_case.GetTodoListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -14,10 +16,10 @@ import javax.inject.Inject
 @HiltViewModel
 class TodoListViewModel @Inject constructor(
     private val todoListUseCase: GetTodoListUseCase
-    ): ViewModel() {
+) : ViewModel() {
     private val _state: MutableState<TodoListState> = mutableStateOf(TodoListState())
     val state: State<TodoListState>
-    get() = _state
+        get() = _state
 
     init {
         loadTodoList()
@@ -29,5 +31,9 @@ class TodoListViewModel @Inject constructor(
                 _state.value = TodoListState(todoList = todoList)
             }
         }
+    }
+
+    fun navigate(destination: NavigationDestination) {
+        NavigationManager.navigate(destination)
     }
 }

@@ -2,7 +2,12 @@ package com.example.todo.presnation.todo_item.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -20,7 +25,8 @@ import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetT
 @Composable
 fun Footer(
     color: Color,
-    showBottomSheet: (BottomSheetType) -> Unit) {
+    showBottomSheet: (BottomSheetType) -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

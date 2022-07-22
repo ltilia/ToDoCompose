@@ -8,30 +8,35 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.todo.common.navigation.destinations.TodoItemDestination
 import com.example.todo.presnation.todo_list.TodoListViewModel
 import com.example.todo.presnation.ui.theme.DARK_GRAY_100
 
 @Composable
 fun ToDoListScreen(
-    viewModel: TodoListViewModel = hiltViewModel() ,
-    onItemClicked: (id: String) -> Unit,
-    onAddNewToDo: () -> Unit
+    viewModel: TodoListViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(DARK_GRAY_100)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(DARK_GRAY_100)
+    ) {
         Column(
             modifier = Modifier
                 .background(DARK_GRAY_100)
-                .padding(vertical = 40.dp, horizontal = 5.dp)) {
+                .padding(vertical = 40.dp, horizontal = 5.dp)
+        ) {
             Header()
-            ToDoList(state.todoList, onItemClicked)
+            ToDoList(state.todoList, onItemClicked = { todo ->
+                viewModel.navigate(TodoItemDestination.createDestination(todo))
+            })
         }
 
-        AddFloatingActionButton(Modifier.align(Alignment.BottomEnd), onAddNewToDo)
+        AddFloatingActionButton(Modifier.align(Alignment.BottomEnd), onAddNewToDo = {
+            viewModel.navigate(TodoItemDestination.createDestination())
+        })
     }
 }
