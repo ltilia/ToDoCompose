@@ -13,21 +13,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.todo.domain.Todo
+import com.example.todo.presnation.todo_item.util.ColorsUtil
 import com.example.todo.presnation.ui.theme.DARK_GRAY
 
 @Composable
-fun ToDoItem(todo: Todo, onItemClicked: (String) -> Unit) {
+fun ToDoItem(todo: Todo, onItemClicked: (Todo) -> Unit) {
     Column(
         modifier = Modifier
             .padding(10.dp)
             .defaultMinSize(minHeight = 70.dp, minWidth = 180.dp)
             .clip(RoundedCornerShape(10.dp))
-            .background(DARK_GRAY)
+            .background(ColorsUtil.getColor(todo.color))
             .clickable {
-                onItemClicked(todo.id.toString())
+                onItemClicked(todo)
             }
             .border(width = 1.dp, color = Color.White.copy(.4f), shape = RoundedCornerShape(10.dp))
-            .padding(vertical = 10.dp, horizontal = 5.dp)
+            .padding(vertical = 10.dp, horizontal = 10.dp)
 
     ) {
         Text(text = todo.title, color = Color.White)
