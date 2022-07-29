@@ -50,7 +50,6 @@ class TodoItemViewModel @Inject constructor(
             }
 
             is TodoScreenEvent.OnColorChange -> {
-                Log.d("LamiaTest", event.colorIndex.toString())
                 _state.value = _state.value.copy(color = event.colorIndex)
             }
 

@@ -43,7 +43,7 @@ fun ModalBottomSheet(
                         }
 
                         BottomSheetType.Setting -> {
-                            SettingBottomSheet(selectedColor, onColorChanged)
+                            SettingBottomSheet(selectedColor)
                         }
                     }
                 }
@@ -52,6 +52,10 @@ fun ModalBottomSheet(
             content()
         }
     )
+
+    LaunchedEffect(backgroundColor.value) {
+        onColorChanged(ColorsUtil.getColorIndex(backgroundColor))
+    }
 }
 
 enum class BottomSheetType {

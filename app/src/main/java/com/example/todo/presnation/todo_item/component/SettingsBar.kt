@@ -18,12 +18,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.todo.R
 import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetType
+import com.example.todo.presnation.ui.theme.BURGUNDY
 
 @Composable
-fun Footer(
+fun SettingsBar(
     color: Color,
     showBottomSheet: (BottomSheetType) -> Unit
 ) {
@@ -41,12 +45,16 @@ fun Footer(
             Icon(
                 modifier = Modifier.size(24.dp),
                 imageVector = Icons.Default.MoreVert,
-                contentDescription = "Menu",
+                contentDescription = stringResource(id = R.string.menu),
                 tint = Color.White
             )
         }
 
-        Text(text = "Last update 6:00 PM", color = Color.White, fontSize = 14.sp)
+        Text(
+            text = stringResource(id = R.string.last_update, "6:00 PM"),
+            color = Color.White,
+            fontSize = 14.sp
+        )
 
         IconButton(onClick = {
             showBottomSheet(BottomSheetType.MoreContent)
@@ -60,10 +68,16 @@ fun Footer(
                 Icon(
                     modifier = Modifier.size(15.dp),
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add",
+                    contentDescription = stringResource(id = R.string.add),
                     tint = Color.White
                 )
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultSettingsBar() {
+    SettingsBar(color = BURGUNDY, showBottomSheet = {})
 }

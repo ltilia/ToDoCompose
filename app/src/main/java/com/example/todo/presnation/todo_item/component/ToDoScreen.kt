@@ -17,9 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.todo.presnation.todo_item.TodoItemViewModel
@@ -29,7 +27,6 @@ import com.example.todo.presnation.todo_item.TodoItemViewModel.TodoScreenEvent.O
 import com.example.todo.presnation.todo_item.component.bottom_sheet.BottomSheetType
 import com.example.todo.presnation.todo_item.component.bottom_sheet.ModalBottomSheet
 import com.example.todo.presnation.todo_item.util.ColorsUtil
-import com.example.todo.presnation.ui.theme.DARK_GREEN
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -52,6 +49,7 @@ fun TodoScreen(viewModel: TodoItemViewModel = hiltViewModel()) {
                     bottomSheetVisibility.value = true
                 }
             }
+
             true
         }
     )
@@ -64,7 +62,7 @@ fun TodoScreen(viewModel: TodoItemViewModel = hiltViewModel()) {
 
     val animatedColor = animateColorAsState(
         targetValue = backgroundColor.value,
-        animationSpec = TweenSpec<Color>(
+        animationSpec = TweenSpec(
             2500, 300, LinearOutSlowInEasing
         )
     )
@@ -91,7 +89,7 @@ fun TodoScreen(viewModel: TodoItemViewModel = hiltViewModel()) {
                 }
             ) {
                 Column {
-                    Header(onBackButtonPressed = {
+                    TopAppBar(onBackButtonPressed = {
                         viewModel.onEvent(OnBackButtonPressed)
                     })
                     ToDoContent(
@@ -105,7 +103,7 @@ fun TodoScreen(viewModel: TodoItemViewModel = hiltViewModel()) {
             }
         }
 
-        Footer(color = animatedColor.value, showBottomSheet = { type ->
+        SettingsBar(color = animatedColor.value, showBottomSheet = { type ->
             focusManager.clearFocus(true)
             bottomSheetType.value = type
             coroutineScope.launch {

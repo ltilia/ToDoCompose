@@ -11,9 +11,9 @@ import com.nesyou.staggeredgrid.LazyStaggeredGrid
 import com.nesyou.staggeredgrid.StaggeredCells
 
 @Composable
-fun ToDoList(todoList: List<Todo>, onItemClicked: (todo: Todo) -> Unit) {
+fun ToDoList(modifier: Modifier, todoList: List<Todo>, onItemClicked: (Todo) -> Unit) {
     LazyStaggeredGrid(
-        modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp),
+        modifier = modifier.fillMaxWidth(),
         cells = StaggeredCells.Fixed(2)
     ) {
         items(todoList) { todoItem ->

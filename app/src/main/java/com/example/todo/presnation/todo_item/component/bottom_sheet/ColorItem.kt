@@ -19,9 +19,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.unit.dp
+import com.example.todo.presnation.todo_item.util.ColorsUtil
 
 @Composable
-fun ColorItem(color: Color, selectedColor: MutableState<Color>) {
+fun ColorItem(color: Color, selectedColor: MutableState<Color>, onColorChanged: (Int) -> Unit) {
     Box(
         modifier = Modifier
             .padding(10.dp)
@@ -36,6 +37,7 @@ fun ColorItem(color: Color, selectedColor: MutableState<Color>) {
                 shape = CircleShape
             ).clickable {
                 selectedColor.value = color
+                onColorChanged(ColorsUtil.getColorIndex(color))
             },
         contentAlignment = Alignment.Center
     ) {

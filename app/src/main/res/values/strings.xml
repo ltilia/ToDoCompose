@@ -10,4 +10,7 @@
     <string name="send">Send</string>
     <string name="collaborator">Collaborator</string>
     <string name="label">Labels</string>
+    <string name="menu">Menu</string>
+    <string name="add">Add</string>
+    <string name="last_update">Last Update %s</string>
 </resources>

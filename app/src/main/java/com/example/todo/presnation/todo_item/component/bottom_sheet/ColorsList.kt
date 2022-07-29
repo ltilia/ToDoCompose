@@ -10,10 +10,10 @@ import androidx.compose.ui.graphics.Color
 import com.example.todo.presnation.todo_item.util.ColorsUtil
 
 @Composable
-fun ColorsList(selectedColor: MutableState<Color>) {
+fun ColorsList(selectedColor: MutableState<Color>, onColorChanged: (Int) -> Unit) {
     LazyRow(modifier = Modifier.fillMaxWidth()) {
         items(ColorsUtil.todoItemColors) { color ->
-            ColorItem(color, selectedColor)
+            ColorItem(color, selectedColor, onColorChanged)
         }
     }
 }

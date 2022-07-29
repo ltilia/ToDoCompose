@@ -2,7 +2,11 @@ package com.example.todo.presnation.todo_item.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
@@ -15,18 +19,20 @@ import com.example.todo.R
 import com.example.todo.presnation.todo_item.util.mirro
 
 @Composable
-fun Header(onBackButtonPressed: () -> Unit) {
+fun TopAppBar(onBackButtonPressed: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.Transparent)
-            .padding(horizontal = 10.dp)
+            .padding(horizontal = 15.dp)
             .padding(top = 28.dp, bottom = 10.dp),
         contentAlignment = Alignment.Center
     ) {
-        Box(modifier = Modifier.align(Alignment.CenterStart).clickable {
-            onBackButtonPressed()
-        }) {
+        Box(
+            modifier = Modifier.align(Alignment.CenterStart).clickable {
+                onBackButtonPressed()
+            }
+        ) {
             Icon(
                 modifier = Modifier.size(22.dp).mirro(),
                 painter = painterResource(id = R.drawable.arrow_back),
