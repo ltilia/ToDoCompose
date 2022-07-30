@@ -68,7 +68,7 @@ class TodoItemViewModel @Inject constructor(
                     )
                 )
 
-                NavigationManager.popBackStack(TodoListDestination)
+                NavigationManager.popBackStack()
             }
         }
     }
